@@ -168,8 +168,8 @@ namespace ncmdumpGUI
             TagLib.Picture picture = new TagLib.Picture(byteVector);
             TagLib.Mpeg.AudioFile audioFile = new TagLib.Mpeg.AudioFile(destFilePath);
             var tags = audioFile.GetTag(TagLib.TagTypes.Id3v2);
-            TagLib.Id3v2.AttachedPictureFrame[] attachedPictureFrames = new TagLib.Id3v2.AttachedPictureFrame[1];
-            TagLib.Id3v2.AttachedPictureFrame attachedPictureFrame = new TagLib.Id3v2.AttachedPictureFrame(picture);
+            TagLib.Id3v2.AttachmentFrame[] attachedPictureFrames = new TagLib.Id3v2.AttachmentFrame[1];
+            TagLib.Id3v2.AttachmentFrame attachedPictureFrame = new TagLib.Id3v2.AttachmentFrame(picture);
             attachedPictureFrames[0] = attachedPictureFrame;
             tags.Pictures = attachedPictureFrames;
             audioFile.Save();
