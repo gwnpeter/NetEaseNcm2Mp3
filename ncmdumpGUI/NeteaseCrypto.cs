@@ -141,6 +141,12 @@ namespace ncmdumpGUI
             // 将.ncm替换成最终转换的文件后缀名
             string destFileName = string.Format("{0}.{1}", _fileInfo.Name.Substring(0, _fileInfo.Name.Length - 4), this._cdata.Format);
             string destFilePath = Path.Combine(destDir, destFileName);
+            var info = new FileInfo(destFilePath);
+            if (info.Exists)
+            {
+                //throw new Exception("file exists");
+                return;
+            }
 
             using (FileStream stream = new FileStream(destFilePath, FileMode.OpenOrCreate, FileAccess.Write))
             {
@@ -161,6 +167,7 @@ namespace ncmdumpGUI
 
                     _progress = (alreadyProcess / totalLen) * 100d;
                 }
+                stream.Close();
             }
 
             // 写入专辑封面

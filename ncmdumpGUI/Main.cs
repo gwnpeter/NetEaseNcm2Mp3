@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.IO;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace ncmdumpGUI
 {
@@ -146,6 +139,14 @@ namespace ncmdumpGUI
 
                 try
                 {
+                    if (!ncmDirctoryInfo.Exists)
+                    {
+                        throw new Exception("ncm目录不存在");
+                    }
+                    if (!mp3DirctoryInfo.Exists)
+                    {
+                        mp3DirctoryInfo.Create();
+                    }
                     foreach (FileInfo fileInfo in ncmDirctoryInfo.GetFiles("*.ncm"))
                     {
                         BeginInvoke(progressDialogControl.delProgressDlg, ProgressStatusType.BackgroundWorkUpdate, "转换：" + fileInfo.Name);
